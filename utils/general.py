@@ -33,6 +33,7 @@ import pkg_resources as pkg
 import torch
 import torchvision
 import yaml
+from loguru import logger
 
 # Import 'ultralytics' package or install if missing
 try:
@@ -513,7 +514,7 @@ def check_font(font=FONT, progress=False):
         LOGGER.info(f"Downloading {url} to {file}...")
         torch.hub.download_url_to_file(url, str(file), progress=progress)
 
-
+@logger.catch()
 def check_dataset(data, autodownload=True):
     """Validates and/or auto-downloads a dataset, returning its configuration as a dictionary."""
 
